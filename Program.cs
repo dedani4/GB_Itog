@@ -1,9 +1,7 @@
 ﻿using static System.Console;
 Clear();
 
-
 Write("Enter few words splited with space: ");
-
 OutputArray(CreateResultArray(InputArray(ReadLine()!)));
 
 string[] InputArray(string line)
