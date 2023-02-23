@@ -1,36 +1,52 @@
 ﻿using static System.Console;
 Clear();
 
+
 Write("Enter few words splited with space: ");
-string[] stringArray = ReadLine()!.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-int count = 0;
-for (int i = 0; i < stringArray.Length; i++)
+OutputArray(CreateResultArray(InputArray(ReadLine()!)));
+
+string[] InputArray(string line)
 {
-    if (stringArray[i].Length < 4)
-        count++;
+    return line.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 }
 
-string[] resultArray = new string[count];
-
-for (int i = 0, j = 0; i < stringArray.Length; i++)
+string[] CreateResultArray(string[] stringArray)
 {
-    if (stringArray[i].Length < 4)
+    string[] resultArray = new string[CountSrting(stringArray)];
+    for (int i = 0, j = 0; i < stringArray.Length; i++)
     {
-        resultArray[j] = stringArray[i];
-        j++;
+        if (stringArray[i].Length < 4)
+        {
+            resultArray[j] = stringArray[i];
+            j++;
+        }
     }
+    return resultArray;
 }
 
-Write("[");
-for (int i = 0; i < resultArray.Length; i++)
+int CountSrting(string[] stringArray)
 {
-    if (i != resultArray.Length - 1)
-        Write(resultArray[i] + ", ");
-    else
-        Write(resultArray[i] + "]");
+    int count = 0;
+    for (int i = 0; i < stringArray.Length; i++)
+    {
+        if (stringArray[i].Length < 4)
+            count++;
+    }
+    return count;
 }
 
+void OutputArray(string[] resultArray)
+{
+    Write("[");
+    for (int i = 0; i < resultArray.Length; i++)
+    {
+        if (i != resultArray.Length - 1)
+            Write(resultArray[i] + ", ");
+        else
+            Write(resultArray[i] + "]");
+    }
 
+}
 
 
